@@ -3,15 +3,13 @@ package Email
 import (
 	"fmt"
 	"testing"
-	"time"
 
 	EmailModules "github.com/IEatLemons/GoHelper/helper/email/modules"
-	"github.com/IEatLemons/GoHelper/language"
 )
 
 func InitDb() {
-	Host := "smtp.163.com:465"
-	User := "xxx@163.com"
+	Host := "smtp.163.com:25"
+	User := "@163.com"
 	Pwd := ""
 	Reply := "xxx@163.com"
 
@@ -20,11 +18,11 @@ func InitDb() {
 
 func TestSmtp_Send(t *testing.T) {
 	InitDb()
-	Data := &EmailModules.Registered{
-		User:       "syj88668@gmail.com",
-		Platform:   "sofa",
-		Expiration: time.Now(),
-		Language:   language.ZhCnLan,
+	Data := &EmailModules.Impact{
+		User:    "syj88668@gmail.com",
+		Subject: "Test Sender",
+		Name:    "Test Sender",
+		Number:  "0",
 	}
 	err := SMTP.Send(Data)
 	fmt.Println("err", err)
